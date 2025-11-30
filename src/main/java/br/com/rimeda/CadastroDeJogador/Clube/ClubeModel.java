@@ -20,6 +20,7 @@ public class ClubeModel {
     private Long id;
     private String nome;
 
+    //@OneToMany -> Um clube para muitos jogadores e mappeia através do nome da coluna pré setada no ModelJogador.
     @OneToMany(mappedBy = "clube")
     private List<JogadorModel> jogadores;
 
