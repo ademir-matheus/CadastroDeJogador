@@ -18,7 +18,10 @@ public class JogadorModel {
     private Long id;
 
     private String nome;
+
+    @Column(unique = true)
     private String instagram;
+
     private int idade;
 
     // @ManyToOne -> Muitos jogadores para um clube.
