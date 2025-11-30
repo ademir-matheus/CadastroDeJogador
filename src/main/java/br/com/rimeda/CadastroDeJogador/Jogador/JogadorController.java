@@ -1,4 +1,4 @@
-package br.com.rimeda.CadastroDeJogador;
+package br.com.rimeda.CadastroDeJogador.Jogador;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
