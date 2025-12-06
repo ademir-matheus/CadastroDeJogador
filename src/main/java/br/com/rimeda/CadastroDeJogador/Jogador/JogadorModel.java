@@ -17,11 +17,13 @@ public class JogadorModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column (name = "nome")
     private String nome;
 
-    @Column(unique = true)
+    @Column(unique = true, name = "instagram")
     private String instagram;
 
+    @Column (name = "idade")
     private int idade;
 
     // @ManyToOne -> Muitos jogadores para um clube.
