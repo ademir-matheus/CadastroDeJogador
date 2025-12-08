@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 @Entity
-@Table(name = "tb_cadastro_missao")
+@Table(name = "tb_cadastro_clube")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -25,7 +25,6 @@ public class ClubeModel {
 
     //@OneToMany -> Um clube para muitos jogadores e mappeia através do nome da coluna pré setada no ModelJogador.
     @OneToMany(mappedBy = "clube")
-    @Column (name = "jogador")
     private List<JogadorModel> jogadores;
 
 }

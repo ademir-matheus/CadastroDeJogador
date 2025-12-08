@@ -27,7 +27,7 @@ public class JogadorModel {
     private int idade;
 
     // @ManyToOne -> Muitos jogadores para um clube.
-    @ManyToMany
+    @ManyToOne
     // @JoinColumn -> junta as tabelas através do primary key e nomeia de acordo com name.
     @JoinColumn(name = "clube_id")
     private ClubeModel clube;
