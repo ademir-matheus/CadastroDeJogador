@@ -17,7 +17,7 @@ public class ClubeModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column (name = "id_clube")
+    @Column (name = "id")
     private Long id;
 
     @Column (name = "nome")
