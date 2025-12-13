@@ -20,9 +20,9 @@ public class ClubeController {
     }
 
     // Criar jogador (CREATE)
-    @PostMapping("/criar")
-    public String criaClube () {
-        return "Clube criado";
+    @PostMapping("/criarClube")
+    public ClubeModel criaClube (@RequestBody ClubeModel clube) {
+        return clubeService.criarClube(clube);
     }
 
     // Lista todos os jogadores (CREATE)
@@ -32,9 +32,9 @@ public class ClubeController {
     }
 
     // Lista todos os jogadores por id
-    @GetMapping("/todosid")
-    public String listaClubesId () {
-        return "Mostra todos os Clubes por id";
+    @GetMapping("/listarClubes/{id}")
+    public ClubeModel listaClubesPorId (@PathVariable Long id) {
+        return clubeService.listarClubesPorId(id);
     }
 
     // Altera jogador (UPDATE)

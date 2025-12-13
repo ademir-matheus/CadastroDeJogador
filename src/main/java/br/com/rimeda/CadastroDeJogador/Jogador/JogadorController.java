@@ -21,9 +21,9 @@ public class JogadorController {
     }
 
     // Criar jogador (CREATE)
-    @PostMapping("/criarjogador")
-    public String criaJogador () {
-        return "Jogador criado";
+    @PostMapping("/criarJogador")
+    public JogadorModel criaJogador (@RequestBody JogadorModel jogador) {
+        return jogadorService.criaJogador(jogador);
     }
 
     // Lista todos os jogadores (CREATE)
@@ -33,9 +33,9 @@ public class JogadorController {
     }
 
     // Lista todos os jogadores por id
-    @GetMapping("/todosidjogador")
-    public String listaJogadoresId () {
-        return "Mostra todos os jogadores por id";
+    @GetMapping("/listarJogadores/{id}")
+    public JogadorModel listaJogadoresId (@PathVariable Long id) {
+        return jogadorService.listarJogadoresPorId(id);
     }
 
     // Altera jogador (UPDATE)

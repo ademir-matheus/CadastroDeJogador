@@ -3,6 +3,7 @@ package br.com.rimeda.CadastroDeJogador.Clube;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ClubeService {
@@ -15,6 +16,15 @@ public class ClubeService {
 
     public List<ClubeModel> listarClubes(){
         return clubeRepository.findAll();
+    }
+
+    public ClubeModel listarClubesPorId (Long id){
+        Optional<ClubeModel> clubePorId = clubeRepository.findById(id);
+        return clubePorId.orElse(null);
+    }
+
+    public ClubeModel criarClube (ClubeModel clube){
+        return clubeRepository.save(clube);
     }
 
 }
