@@ -27,5 +27,16 @@ public class JogadorService {
         return jogadorRepository.save(jogador);
     }
 
+    public void deletarJogador (Long id) {
+        jogadorRepository.deleteById(id);
+    }
+
+    public JogadorModel alterarJogador (Long id, JogadorModel jogadorAtualizado) {
+        if (jogadorRepository.existsById(id)) {
+            jogadorAtualizado.setId(id);
+            return jogadorRepository.save(jogadorAtualizado);
+        }
+        return null;
+    }
 
 }

@@ -44,9 +44,14 @@ public class ClubeController {
     }
 
     // Deleta jogador (DELETE)
-    @DeleteMapping("/deleta")
-    public String deletaClube(){
-        return "deleta Clube";
+    @DeleteMapping("/deletarClube/{id}")
+    public void deletarClube(Long id){
+        clubeService.deletarClube(id);
+    }
+
+    @PutMapping("/alterClube/{id}")
+    public ClubeModel alterarClube (@PathVariable Long id, @RequestBody ClubeModel clubeAtualizado) {
+        return clubeService.alterarClube(id, clubeAtualizado);
     }
 
 }

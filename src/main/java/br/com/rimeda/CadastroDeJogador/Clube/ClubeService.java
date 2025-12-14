@@ -27,4 +27,16 @@ public class ClubeService {
         return clubeRepository.save(clube);
     }
 
+    public void deletarClube (Long id) {
+        clubeRepository.deleteById(id);
+    }
+
+    public ClubeModel alterarClube (Long id, ClubeModel clubeAtualizado) {
+        if (clubeRepository.existsById(id)) {
+            clubeAtualizado.setId(id);
+            return clubeRepository.save(clubeAtualizado);
+        }
+        return null;
+    }
+
 }

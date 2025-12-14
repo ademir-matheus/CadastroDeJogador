@@ -39,15 +39,15 @@ public class JogadorController {
     }
 
     // Altera jogador (UPDATE)
-    @PutMapping("/alterarjogador")
-    public String alterarJogador () {
-        return "Altera jogador";
+    @PutMapping("/alterarJogador/{id}")
+    public JogadorModel alterarJogador (@PathVariable Long id, @RequestBody JogadorModel jogadorAtualizado) {
+        return jogadorService.alterarJogador(id, jogadorAtualizado);
     }
 
     // Deleta jogador (DELETE)
-    @DeleteMapping("/deletajogador")
-    public String deletaJogador(){
-        return "deleta jogador";
+    @DeleteMapping("/deletarJogador/{id}")
+    public void deletarJogador(@PathVariable Long id){
+        jogadorService.deletarJogador(id);
     }
 
 }
