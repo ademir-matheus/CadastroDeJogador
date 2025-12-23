@@ -22,7 +22,7 @@ public class JogadorController {
 
     // Criar jogador (CREATE)
     @PostMapping("/criarJogador")
-    public JogadorModel criaJogador (@RequestBody JogadorModel jogador) {
+    public JogadorDTO criaJogador (@RequestBody JogadorDTO jogador) {
         return jogadorService.criaJogador(jogador);
     }
 

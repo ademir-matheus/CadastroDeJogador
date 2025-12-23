@@ -8,9 +8,11 @@ import java.util.Optional;
 @Service
 public class JogadorService {
 
+    private JogadorMapper jogadorMapper;
     private JogadorRepository jogadorRepository;
 
-    public JogadorService(JogadorRepository jogadorRepository) {
+    public JogadorService(JogadorMapper jogadorMapper, JogadorRepository jogadorRepository) {
+        this.jogadorMapper = jogadorMapper;
         this.jogadorRepository = jogadorRepository;
     }
 
@@ -23,8 +25,10 @@ public class JogadorService {
         return jogadorPorId.orElse(null);
     }
 
-    public JogadorModel criaJogador (JogadorModel jogador) {
-        return jogadorRepository.save(jogador);
+    public JogadorDTO criaJogador (JogadorDTO jogadorDTO) {
+        JogadorModel jogador = jogadorMapper.map(jogadorDTO);
+        jogador = jogadorRepository.save(jogador);
+        return jogadorMapper.map(jogador);
     }
 
     public void deletarJogador (Long id) {
