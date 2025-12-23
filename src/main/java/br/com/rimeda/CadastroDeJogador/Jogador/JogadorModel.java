@@ -26,6 +26,9 @@ public class JogadorModel {
     @Column (name = "idade")
     private int idade;
 
+    @Column (name = "cor_de_pele")
+    private String corDePele;
+
     // @ManyToOne -> Muitos jogadores para um clube.
     @ManyToOne
     // @JoinColumn -> junta as tabelas através do primary key e nomeia de acordo com name.
