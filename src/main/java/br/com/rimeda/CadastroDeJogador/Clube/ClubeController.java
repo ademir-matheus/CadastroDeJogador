@@ -21,26 +21,20 @@ public class ClubeController {
 
     // Criar jogador (CREATE)
     @PostMapping("/criarClube")
-    public ClubeModel criaClube (@RequestBody ClubeModel clube) {
+    public ClubeDTO criaClube (@RequestBody ClubeDTO clube) {
         return clubeService.criarClube(clube);
     }
 
     // Lista todos os jogadores (CREATE)
     @GetMapping("/listarClubes")
-    public List<ClubeModel> listarClubes () {
+    public List<ClubeDTO> listarClubes () {
         return clubeService.listarClubes();
     }
 
     // Lista todos os jogadores por id
     @GetMapping("/listarClubes/{id}")
-    public ClubeModel listaClubesPorId (@PathVariable Long id) {
+    public ClubeDTO listaClubesPorId (@PathVariable Long id) {
         return clubeService.listarClubesPorId(id);
-    }
-
-    // Altera jogador (UPDATE)
-    @PutMapping("/alterar")
-    public String alterarClube () {
-        return "Altera Clube";
     }
 
     // Deleta jogador (DELETE)
@@ -50,7 +44,7 @@ public class ClubeController {
     }
 
     @PutMapping("/alterClube/{id}")
-    public ClubeModel alterarClube (@PathVariable Long id, @RequestBody ClubeModel clubeAtualizado) {
+    public ClubeDTO alterarClube (@PathVariable Long id, @RequestBody ClubeDTO clubeAtualizado) {
         return clubeService.alterarClube(id, clubeAtualizado);
     }
 

@@ -2,6 +2,7 @@ package br.com.rimeda.CadastroDeJogador.Clube;
 
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -9,32 +10,46 @@ import java.util.Optional;
 public class ClubeService {
 
     private ClubeRepository clubeRepository;
+    private ClubeMapper clubeMapper;
 
-    public ClubeService(ClubeRepository clubeRepository) {
+    public ClubeService(ClubeRepository clubeRepository, ClubeMapper clubeMapper) {
         this.clubeRepository = clubeRepository;
+        this.clubeMapper = clubeMapper;
     }
 
-    public List<ClubeModel> listarClubes(){
-        return clubeRepository.findAll();
+    public List<ClubeDTO> listarClubes(){
+        List<ClubeModel> clubeModels = clubeRepository.findAll();
+        List<ClubeDTO> clubeDTOS = new ArrayList<>();
+
+        for (ClubeModel c : clubeModels) {
+            clubeDTOS.add(clubeMapper.map(c));
+        }
+
+        return clubeDTOS;
     }
 
-    public ClubeModel listarClubesPorId (Long id){
-        Optional<ClubeModel> clubePorId = clubeRepository.findById(id);
-        return clubePorId.orElse(null);
+    public ClubeDTO listarClubesPorId (Long id){
+        ClubeModel clubePorId = clubeRepository.findById(id).orElse(null);
+        return (clubePorId == null) ? null : clubeMapper.map(clubePorId);
     }
 
-    public ClubeModel criarClube (ClubeModel clube){
-        return clubeRepository.save(clube);
+    public ClubeDTO criarClube (ClubeDTO clubeDTO){
+        ClubeModel clubeModel = clubeMapper.map(clubeDTO);
+        ClubeModel clubeSalvo = clubeRepository.save(clubeModel);
+        return clubeMapper.map(clubeSalvo);
     }
 
     public void deletarClube (Long id) {
         clubeRepository.deleteById(id);
     }
 
-    public ClubeModel alterarClube (Long id, ClubeModel clubeAtualizado) {
-        if (clubeRepository.existsById(id)) {
-            clubeAtualizado.setId(id);
-            return clubeRepository.save(clubeAtualizado);
+    public ClubeDTO alterarClube (Long id, ClubeDTO clubeAtualizado) {
+        Optional <ClubeModel> clubeExistente = clubeRepository.findById(id);
+        if (clubeExistente.isPresent()) {
+            ClubeModel clubeModel = clubeMapper.map(clubeAtualizado);
+            clubeModel.setId(id);
+            ClubeModel clubeSalvo = clubeRepository.save(clubeModel);
+            return clubeMapper.map(clubeSalvo);
         }
         return null;
     }

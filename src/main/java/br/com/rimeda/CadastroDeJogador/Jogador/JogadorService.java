@@ -2,6 +2,7 @@ package br.com.rimeda.CadastroDeJogador.Jogador;
 
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,18 +17,26 @@ public class JogadorService {
         this.jogadorRepository = jogadorRepository;
     }
 
-    public List<JogadorModel> listarJogadores() {
-        return jogadorRepository.findAll();
+    public List<JogadorDTO> listarJogadores() {
+        List <JogadorModel> jogadoresModel = jogadorRepository.findAll();
+        List<JogadorDTO> jogadorDTOS = new ArrayList<>();
+
+            for (JogadorModel j : jogadoresModel) {
+                jogadorDTOS.add(jogadorMapper.map(j));
+            }
+
+            return jogadorDTOS;
+
     }
 
-    public JogadorModel listarJogadoresPorId(Long id){
-        Optional<JogadorModel> jogadorPorId = jogadorRepository.findById(id);
-        return jogadorPorId.orElse(null);
+    public JogadorDTO listarJogadoresPorId(Long id){
+       JogadorModel jogadorModel = jogadorRepository.findById(id).orElse(null);
+        return jogadorModel == null ? null : jogadorMapper.map(jogadorModel);
     }
 
     public JogadorDTO criaJogador (JogadorDTO jogadorDTO) {
         JogadorModel jogador = jogadorMapper.map(jogadorDTO);
-        jogador = jogadorRepository.save(jogador);
+        JogadorModel jogadorSalvo = jogadorRepository.save(jogador);
         return jogadorMapper.map(jogador);
     }
 
@@ -35,10 +44,13 @@ public class JogadorService {
         jogadorRepository.deleteById(id);
     }
 
-    public JogadorModel alterarJogador (Long id, JogadorModel jogadorAtualizado) {
-        if (jogadorRepository.existsById(id)) {
-            jogadorAtualizado.setId(id);
-            return jogadorRepository.save(jogadorAtualizado);
+    public JogadorDTO alterarJogador (Long id, JogadorDTO jogadorAtualizado) {
+        Optional<JogadorModel> jogadorExistente = jogadorRepository.findById(id);
+        if (jogadorExistente.isPresent()) {
+            JogadorModel jogadorModel = jogadorMapper.map(jogadorAtualizado);
+            jogadorModel.setId(id);
+            JogadorModel jogadorSalvo = jogadorRepository.save(jogadorModel);
+            return jogadorAtualizado = jogadorMapper.map(jogadorSalvo);
         }
         return null;
     }
