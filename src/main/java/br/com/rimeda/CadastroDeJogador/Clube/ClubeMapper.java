@@ -1,5 +1,8 @@
 package br.com.rimeda.CadastroDeJogador.Clube;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class ClubeMapper {
 
     public ClubeModel map (ClubeDTO clubeDTO){
