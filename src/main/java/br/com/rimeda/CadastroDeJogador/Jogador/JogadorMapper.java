@@ -14,6 +14,7 @@ public class JogadorMapper {
         jogadorModel.setInstagram(jogadorDTO.getInstagram());
         jogadorModel.setClube(jogadorDTO.getClube());
         jogadorModel.setCorDePele(jogadorDTO.getCorDePele());
+        jogadorModel.setStatusAtividade(jogadorDTO.getStatusAtividade());
 
         return jogadorModel;
     }
@@ -27,6 +28,7 @@ public class JogadorMapper {
         jogadorDTO.setInstagram(jogadorModel.getInstagram());
         jogadorDTO.setClube(jogadorModel.getClube());
         jogadorDTO.setCorDePele(jogadorModel.getCorDePele());
+        jogadorDTO.setStatusAtividade(jogadorModel.getStatusAtividade());
         return jogadorDTO;
     }
 

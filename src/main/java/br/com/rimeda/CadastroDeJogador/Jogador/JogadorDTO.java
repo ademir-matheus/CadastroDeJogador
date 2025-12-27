@@ -15,4 +15,5 @@ public class JogadorDTO {
     private int idade;
     private ClubeModel clube;
     private String corDePele;
+    private String statusAtividade;
 }
