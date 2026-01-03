@@ -15,6 +15,7 @@ public class JogadorMapper {
         jogadorModel.setClube(jogadorDTO.getClube());
         jogadorModel.setCorDePele(jogadorDTO.getCorDePele());
         jogadorModel.setStatusAtividade(jogadorDTO.getStatusAtividade());
+        jogadorModel.setImagemJogador(jogadorDTO.getImagemJogador());
 
         return jogadorModel;
     }
@@ -29,6 +30,7 @@ public class JogadorMapper {
         jogadorDTO.setClube(jogadorModel.getClube());
         jogadorDTO.setCorDePele(jogadorModel.getCorDePele());
         jogadorDTO.setStatusAtividade(jogadorModel.getStatusAtividade());
+        jogadorDTO.setImagemJogador(jogadorModel.getImagemJogador());
         return jogadorDTO;
     }
 

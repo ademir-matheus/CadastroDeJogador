@@ -5,12 +5,14 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Table(name = "tb_cadastro")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString(exclude = "clube")
 public class JogadorModel {
 
     @Id
@@ -31,6 +33,9 @@ public class JogadorModel {
 
     @Column (name = "status_atividade")
     private String statusAtividade;
+
+    @Column (name = "imagem_jogador")
+    private String imagemJogador;
 
     // @ManyToOne -> Muitos jogadores para um clube.
     @ManyToOne
