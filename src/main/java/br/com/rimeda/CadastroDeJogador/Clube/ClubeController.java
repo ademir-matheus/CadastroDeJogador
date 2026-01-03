@@ -10,7 +10,7 @@ import java.util.List;
 @RequestMapping("/clube")
 public class ClubeController {
 
-    private ClubeService clubeService;
+    private final ClubeService clubeService;
 
     public ClubeController(ClubeService clubeService) {
         this.clubeService = clubeService;
@@ -54,6 +54,5 @@ public class ClubeController {
         ClubeDTO clubeExistente = clubeService.listarClubesPorId(id);
         return (clubeExistente != null) ? ResponseEntity.ok("JOGADOR DELETADO!") : ResponseEntity.status(HttpStatus.NOT_FOUND).body("JOGADOR COM O ID: "+ id +" NÃO ENCONTRADO!");
     }
-
 
 }
